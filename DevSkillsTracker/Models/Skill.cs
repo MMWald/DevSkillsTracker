@@ -20,6 +20,10 @@ namespace DevSkillsTracker.Web.Models
 
         [ForeignKey("UserId")]
         public IdentityUser? User { get; set; }
+
+        [Range(1, 1000)]
+        public double? TargetHours { get; set; }  // how many hours the user wants to spend
+
     }
 }
 

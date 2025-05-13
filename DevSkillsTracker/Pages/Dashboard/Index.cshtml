@@ -1,0 +1,61 @@
+@page
+@model DevSkillsTracker.Web.Pages.Dashboard.IndexModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h1>Learning Dashboard</h1>
+
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="card text-bg-light mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Total Hours</h5>
+                <p class="card-text display-6">@Model.TotalHours.ToString("F1")</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-bg-light mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Total Sessions</h5>
+                <p class="card-text display-6">@Model.TotalSessions</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-bg-light mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Top Skill</h5>
+                <p class="card-text display-6">@Model.TopSkillName</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<canvas id="hoursPerSkillChart" height="100"></canvas>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('hoursPerSkillChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: @Html.Raw(Json.Serialize(Model.SkillNames)),
+                datasets: [{
+                    label: 'Hours Spent per Skill',
+                    data: @Html.Raw(Json.Serialize(Model.HoursPerSkill)),
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    </script>
+}

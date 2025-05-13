@@ -1,8 +1,21 @@
 ﻿@page
 @model DevSkillsTracker.Web.Pages.IndexModel
 @{
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = "Welcome";
 }
 
-<h1>Welcome to DevSkills Tracker</h1>
-<p>This is your developer learning journal. Start tracking your progress!</p>
+<div class="container mt-5">
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Welcome to DevSkills Tracker</h1>
+        <p class="lead">Track your skills, learning progress, and document your development journey.</p>
+        <hr />
+        @if (User.Identity.IsAuthenticated)
+        {
+            <p><a class="btn btn-primary btn-lg" asp-page="/Skills/Index">View Your Skills</a></p>
+        }
+        else
+        {
+            <p><a class="btn btn-success btn-lg" asp-area="Identity" asp-page="/Account/Login">Login to get started</a></p>
+        }
+    </div>
+</div>

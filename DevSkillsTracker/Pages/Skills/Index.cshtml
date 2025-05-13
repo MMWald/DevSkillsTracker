@@ -5,31 +5,50 @@
     ViewData["Title"] = "Your Skills";
 }
 
-<h1>Your Skills</h1>
-
-<p>
-    <a asp-page="Create" class="btn btn-primary">Add New Skill</a>
-</p>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.SkillList)
-        {
-            <tr>
-                <td>@item.Name</td>
-                <td>@item.Description</td>
-                <td>
-                    <a asp-page="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-page="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h4>Your Skills</h4>
+        </div>
+        <div class="card-body">
+            <a asp-page="Create" class="btn btn-success mb-2">Add New Skill</a>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.SkillsWithProgress)
+                    {
+                        <tr>
+                            <td>@item.Skill.Name</td>
+                            <td>@item.Skill.Description</td>
+                            <td>
+                                @if (item.Skill.TargetHours.HasValue)
+                                {
+                                    <div class="progress" style="height: 20px;">
+                                        <div class="progress-bar" role="progressbar" style="width: @item.ProgressPercent.ToString("F0")%;" aria-valuenow="@item.ProgressPercent.ToString("F0")" aria-valuemin="0" aria-valuemax="100">
+                                            @item.ProgressPercent.ToString("F0")%
+                                        </div>
+                                    </div>
+                                    <small>@item.TotalHours.ToString("F1")h / @item.Skill.TargetHours.Value.ToString("F1")h</small>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">No goal set</span>
+                                }
+                            </td>
+                            <td>
+                                <a asp-page="Edit" asp-route-id="@item.Skill.Id" class="btn btn-sm btn-warning">Edit</a>
+                                <a asp-page="Delete" asp-route-id="@item.Skill.Id" class="btn btn-sm btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

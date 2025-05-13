@@ -17,6 +17,9 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 })
 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+//Registering razor pages
+builder.Services.AddRazorPages().AddNewtonsoftJson();
+
 builder.Services.AddRazorPages();
 
 var app = builder.Build();

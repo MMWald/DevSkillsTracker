@@ -23,15 +23,35 @@ namespace DevSkillsTracker.Web.Pages.Skills
             _context = context;
             _userManager = userManager;
         }
+        public class SkillWithProgress
+        {
+            public Skill Skill { get; set; }
+            public double TotalHours { get; set; }
+            public double ProgressPercent => Skill.TargetHours.HasValue && Skill.TargetHours > 0
+                ? Math.Min(100, (TotalHours / Skill.TargetHours.Value) * 100)
+                : 0;
+        }
 
-        public IList<Skill> SkillList { get; set; }
+        public IList<SkillWithProgress> SkillsWithProgress { get; set; }
 
         public async Task OnGetAsync()
         {
             var userId = _userManager.GetUserId(User);
-            SkillList = await _context.Skills
-                                      .Where(s => s.UserId == userId)
-                                      .ToListAsync();
+
+            var skills = await _context.Skills
+                .Where(s => s.UserId == userId)
+                .ToListAsync();
+
+            var logs = await _context.LearningLogs
+                .Where(l => l.UserId == userId)
+                .ToListAsync();
+
+            SkillsWithProgress = skills
+                .Select(s => new SkillWithProgress
+                {
+                    Skill = s,
+                    TotalHours = logs.Where(l => l.SkillId == s.Id).Sum(l => l.HoursSpent)
+                }).ToList();
         }
     }
 }
