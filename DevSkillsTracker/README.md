@@ -7,6 +7,7 @@ A Razor Pages web app built in .NET 8 for tracking developer skill progression.
 - Add/Edit/Delete skills
 - Track learning sessions with time logs and notes
 - Uses SQLite via Entity Framework Core
+- Responsive UI using Bootstrap
 
 ## Getting Started
 ```bash
@@ -21,3 +22,4 @@ dotnet run
 - SQLite
 - ASP.NET Identity
 - EF Core
+- Bootstrap 5
