@@ -1,0 +1,52 @@
+@page
+@model DevSkillsTracker.Web.Pages_LearningLogs.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>LearningLog</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="LearningLog.Id" />
+            <div class="form-group">
+                <label asp-for="LearningLog.SkillId" class="control-label"></label>
+                <select asp-for="LearningLog.SkillId" class="form-control" asp-items="ViewBag.SkillId"></select>
+                <span asp-validation-for="LearningLog.SkillId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LearningLog.Date" class="control-label"></label>
+                <input asp-for="LearningLog.Date" class="form-control" />
+                <span asp-validation-for="LearningLog.Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LearningLog.HoursSpent" class="control-label"></label>
+                <input asp-for="LearningLog.HoursSpent" class="form-control" />
+                <span asp-validation-for="LearningLog.HoursSpent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LearningLog.Notes" class="control-label"></label>
+                <input asp-for="LearningLog.Notes" class="form-control" />
+                <span asp-validation-for="LearningLog.Notes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LearningLog.UserId" class="control-label"></label>
+                <input asp-for="LearningLog.UserId" class="form-control" />
+                <span asp-validation-for="LearningLog.UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+

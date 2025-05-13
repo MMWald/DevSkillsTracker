@@ -1,0 +1,45 @@
+@page
+@model DevSkillsTracker.Web.Pages_LearningLogs.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>LearningLog</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="LearningLog.SkillId" class="form-label"></label>
+                <select asp-for="LearningLog.SkillId" class="form-select" asp-items="Model.SkillList"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="LearningLog.Date" class="control-label"></label>
+                <input asp-for="LearningLog.Date" class="form-control" />
+                <span asp-validation-for="LearningLog.Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LearningLog.HoursSpent" class="control-label"></label>
+                <input asp-for="LearningLog.HoursSpent" class="form-control" />
+                <span asp-validation-for="LearningLog.HoursSpent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LearningLog.Notes" class="control-label"></label>
+                <input asp-for="LearningLog.Notes" class="form-control" />
+                <span asp-validation-for="LearningLog.Notes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+

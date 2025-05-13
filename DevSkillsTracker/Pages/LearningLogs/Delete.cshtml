@@ -1,0 +1,52 @@
+@page
+@model DevSkillsTracker.Web.Pages_LearningLogs.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>LearningLog</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LearningLog.Skill)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LearningLog.Skill.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LearningLog.Date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LearningLog.Date)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LearningLog.HoursSpent)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LearningLog.HoursSpent)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LearningLog.Notes)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LearningLog.Notes)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LearningLog.UserId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LearningLog.UserId)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="LearningLog.Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

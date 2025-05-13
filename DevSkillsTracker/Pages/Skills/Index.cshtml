@@ -1,0 +1,35 @@
+@page
+@model DevSkillsTracker.Web.Pages.Skills.IndexModel
+
+@{
+    ViewData["Title"] = "Your Skills";
+}
+
+<h1>Your Skills</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary">Add New Skill</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.SkillList)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td>
+                    <a asp-page="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
